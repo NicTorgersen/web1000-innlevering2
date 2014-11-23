@@ -12,6 +12,3 @@ CREATE TABLE IF NOT EXISTS `student` (
     PRIMARY KEY(`brukernavn`),
     FOREIGN KEY(`klassekode`) REFERENCES `klasse`(`klassekode`)
 );
-
-DROP TABLE `klasse`;
-DROP TABLE `student`;

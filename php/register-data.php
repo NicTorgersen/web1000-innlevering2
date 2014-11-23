@@ -1,4 +1,6 @@
 <?php
-$title = "Registrer data";
-require_once('partials/header.partial.php');
-require_once('partials/register-data.partial.php');
+    if (isset($_POST['username'])) {
+        require_once('database/db-connection.php');
+
+        
+    }

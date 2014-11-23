@@ -10,16 +10,16 @@
         <nav>
             <ul>
                 <li>
-                    <a href="php/register-data.php">Registrer data</a>
+                    <a href="register-data.php">Registrer data</a>
                 </li>
                 <li>
-                    <a href="php/show-data.php">Vis data</a>
+                    <a href="show-data.php">Vis data</a>
                 </li>
                 <li>
-                    <a href="php/edit-data.php">Endre data</a>
+                    <a href="edit-data.php">Endre data</a>
                 </li>
                 <li>
-                    <a href="php/delete-data.php">Slett data</a>
+                    <a href="delete-data.php">Slett data</a>
                 </li>
             </ul>
         </nav>
