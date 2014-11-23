@@ -37,12 +37,35 @@ label {
     float: left;
     width: 10em;
     margin-right: 1em;
+    padding: 5px;
 }
 select {
-    width: 100px;
+    width: 300px;
+    padding: 5px;
+    border: 1px solid #E7E7E7;
 }
 
 .container {
     margin: 0 auto;
     width: 40%;
+}
+.error {
+    border: red;
+    background: red;
+    padding: 20px 40px;
+    color: white;
+    font-size: 2.0em;
+    font-weight: bolder;
+}
+.success {
+    border: green;
+    background: green;
+    padding: 50px 100px;
+    display: block;
+    color: white;
+    font-size: 4.0em;
+    font-weight: bolder;
+}
+.dashed a {
+    text-decoration: line-through;
 }
