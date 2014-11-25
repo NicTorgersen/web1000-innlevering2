@@ -10,10 +10,10 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="register-data.php">Registrer data</a>
+                        <a href="./">Tilbake</a>
                     </li>
                     <li>
-                        <a href="./">Tilbake</a>
+                        <a href="register-data.php">Registrer data</a>
                     </li>
                     <li class="dashed">
                         <a href="">Endre data</a>
