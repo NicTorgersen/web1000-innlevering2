@@ -49,21 +49,22 @@
                     </thead>
                     <tbody>
                         <?php
-                            foreach ($classes->getClasses() as $key => $class) {
-                                echo '<tr>';
-                                echo '<td><input type="checkbox" name="deleteStudent[]" value="' . $class['klassekode'] . '"></td>';
-                                echo '<td>' . $class['klassekode'] . '</td>';
-                                echo '<td>' . $class['klassenavn'] . '</td>';
-                                echo '</tr>';
-                            }
+                        foreach ($classes->getClasses() as $key => $class) {
+                            echo '<tr>'.PHP_EOL;
+                            echo '<td><input class="deleteClass" type="checkbox" name="deleteClass[]" value="' . $class['klassekode'] . '"></td>'.PHP_EOL;
+                            echo '<td>' . $class['klassekode'] . '</td>'.PHP_EOL;
+                            echo '<td>' . $class['klassenavn'] . '</td>'.PHP_EOL;
+                            echo '</tr>'.PHP_EOL;
+                        }
                         ?>
                     </tbody>
                 </table>
+                <input type="hidden" name="type" value="0">
                 <input type="submit" name="submit" value="Slett klass(er)">
             </form>
 
             <h2 class="text-blue">Slett studenter</h2>
-            <form>
+            <form method="POST" action="php/delete-data.php">
                 <table>
                     <thead>
                         <tr>
@@ -76,18 +77,19 @@
                     </thead>
                     <tbody>
                         <?php
-                            foreach ($students->getStudents() as $key => $student) {
-                                echo '<tr>';
-                                echo '<td><input type="checkbox" name="deleteStudent[] value="' . $student['brukernavn'] . '"></td>';
-                                echo '<td>' . $student['brukernavn'] . '</td>';
-                                echo '<td>' . $student['fornavn'] . '</td>';
-                                echo '<td>' . $student['etternavn'] . '</td>';
-                                echo '<td>' . $student['klassekode'] . '</td>';
-                                echo '</tr>';
-                            }
+                        foreach ($students->getStudents() as $key => $student) {
+                            echo '<tr>'.PHP_EOL;
+                            echo '<td><input class="deleteStudent" type="checkbox" name="deleteStudent[]" value="' . $student['brukernavn'] . '"></td>'.PHP_EOL;
+                            echo '<td>' . $student['brukernavn'] . '</td>'.PHP_EOL;
+                            echo '<td>' . $student['fornavn'] . '</td>'.PHP_EOL;
+                            echo '<td>' . $student['etternavn'] . '</td>'.PHP_EOL;
+                            echo '<td>' . $student['klassekode'] . '</td>'.PHP_EOL;
+                            echo '</tr>'.PHP_EOL;
+                        }
                         ?>
                     </tbody>
                 </table>
+                <input type="hidden" name="type" value="1">
                 <input type="submit" name="submit" value="Slett student(er)">
             </form>
         </div>

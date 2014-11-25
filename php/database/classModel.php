@@ -11,6 +11,24 @@
             throw new Exception('Database connection required.');
         }
 
+        public function deleteClass (array $cc) {
+            $cleanVals = $this->validateClassCodes($cc);
+            $qMarks = $this->generateQMarks($cleanVals);
+            $stmt = $this->db->prepare("DELETE FROM klasse WHERE klassekode IN (" . $qMarks . ")");
+            $stmt = $stmt->execute($cleanVals);
+            $return = array(
+                'cc' => $cleanVals
+            );
+
+            if ($stmt) {
+                $return['success'] = true;
+            } else {
+                $return['error'] = $stmt;
+            }
+
+            return $return;
+        }
+
         public function postClass ($cc, $cn) {
             if ($this->validateClassCode($cc) && $this->validateClassName($cn)) {
                 $cc = $this->validateClassCode($cc);
@@ -46,7 +64,7 @@
           }  
 
         public function getClasses () {
-            $stmt = $this->db->query('SELECT klassekode, klassenavn FROM klasse');
+            $stmt = $this->db->query('SELECT klassekode, klassenavn FROM klasse ORDER BY klassekode ASC');
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }

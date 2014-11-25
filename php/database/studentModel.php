@@ -11,6 +11,24 @@
             throw new Exception('Database connection required.');
         }
 
+        public function deleteStudent (array $u) {
+            $cleanVals = $this->validateUserNames($u);
+            $qMarks = $this->generateQMarks($cleanVals);
+            $stmt = $this->db->prepare("DELETE FROM student WHERE brukernavn IN (" . $qMarks . ")");
+            $stmt = $stmt->execute($cleanVals);
+            $return = array(
+                'u' => $cleanVals
+            );
+
+            if ($stmt) {
+                $return['success'] = true;
+            } else {
+                $return['error'] = $stmt;
+            }
+
+            return $return;
+        }
+
         public function postStudent ($u, $fn, $ln, $cc) {
             if ($this->validateUserName($u) && $this->validateName($fn, $ln) && $this->validateClassCode($cc)) {
                 $u = $this->validateUserName($u);
@@ -49,7 +67,7 @@
         }
 
         public function getStudents () {
-            $stmt = $this->db->query('SELECT brukernavn, fornavn, etternavn, klassekode FROM student');
+            $stmt = $this->db->query('SELECT brukernavn, fornavn, etternavn, klassekode FROM student ORDER BY klassekode ASC');
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 

@@ -12,6 +12,18 @@
             throw new Exception('Database connection required.');
         }
 
+        protected function generateQMarks (array $qMarkThis) {
+            $qMarks = "";
+            for ($i = 0; $i < count($qMarkThis); $i++) {
+                if ($i == count($qMarkThis)-1) {
+                    $qMarks .= "?";
+                } else {
+                    $qMarks .= "?, ";
+                }
+            }
+            return $qMarks;
+        }
+
         protected function validateFirstName ($fn) {
             $fn = ucfirst(trim(strip_tags($fn)));
             return (strlen($fn) < 20 && strlen($fn) >= 3) ? $fn : false;
@@ -27,6 +39,16 @@
             return (strlen($u) == 2) ? $u : false;
         }
 
+        protected function validateUserNames (array $u) {
+            $cleanVals = array();
+            foreach ($u as $key => $value) {
+                if ($this->validateUserName($value)) {
+                    $cleanVals[] = $this->validateUserName($value);
+                }
+            }
+            return $cleanVals;
+        }
+
         protected function validateName ($fn, $ln) {
             return ($this->validateFirstName($fn) && $this->validateLastName($ln)) ? array('fn' => $fn, 'ln' => $ln) : false;
         }
@@ -34,6 +56,16 @@
         protected function validateClassCode ($cc) {
             $cc = strtoupper(trim(strip_tags($cc)));
             return (strlen($cc) == 3 && ctype_digit(substr($cc, -1))) ? $cc : false;
+        }
+
+        protected function validateClassCodes (array $cc) {
+            $cleanVals = array();
+            foreach ($cc as $key => $value) {
+                if ($this->validateClassCode($value)) {
+                    $cleanVals[] = $this->validateClassCode($value);
+                }
+            }
+            return $cleanVals;
         }
         
         protected function validateClassName ($cn) {
