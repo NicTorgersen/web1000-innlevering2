@@ -1,10 +1,15 @@
 <?php
     require_once('utils.php');
     class ClassModel extends Utils {
-        
-        public function getClassCodes () {
-                return $this->db->query('SELECT klassekode FROM klasse')->fetchAll(PDO::FETCH_NUM);
+        private $db;
+
+        public function __construct(PDO $db) {
+            if ($db) {
+                $this->db = $db;
+                return true;
             }
+            throw new Exception('Database connection required.');
+        }
 
         public function postClass ($cc, $cn) {
             if ($this->validateClassCode($cc) && $this->validateClassName($cn)) {
@@ -27,5 +32,9 @@
             $stmt = $this->db->query('SELECT count(klassekode) as classes FROM klasse');
             $stmt = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $stmt[0]['classes'];
+        }
+
+        public function getClassCodes () {
+            return $this->db->query('SELECT klassekode FROM klasse')->fetchAll(PDO::FETCH_NUM);
         }
     }

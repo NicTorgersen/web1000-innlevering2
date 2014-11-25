@@ -1,7 +1,16 @@
 <?php
     require_once('utils.php');
     class StudentModel extends Utils {
+        private $db;
 
+        public function __construct(PDO $db) {
+            if ($db) {
+                $this->db = $db;
+                return true;
+            }
+            throw new Exception('Database connection required.');
+        }
+        
         public function postStudent ($u, $fn, $ln, $cc) {
             if ($this->validateUserName($u) && $this->validateName($fn, $ln) && $this->validateClassCode($cc)) {
                 $u = $this->validateUserName($u);

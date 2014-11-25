@@ -9,19 +9,21 @@
 
     <?php
         require_once('database/db-connection.php');
-        require_once('database/utils.php');
+        require_once('database/studentModel.php');
+        require_once('database/classModel.php');
 
         if (isset($_POST['type'], $_POST['submit'])) {
 
             // variabel $db kommer fra db-connection.php
-            $utils = new Utils($db);
+            $students = new StudentModel($db);
+            $classes = new ClassModel($db);
             $type = $_POST['type'];
 
             switch ($type) {
                 case 0:
 
                     if (isset($_POST['classcode'], $_POST['classname'])) {
-                        $utils_ret = $utils->postClass($_POST['classcode'], $_POST['classname']);
+                        $utils_ret = $classes->postClass($_POST['classcode'], $_POST['classname']);
                         foreach($utils_ret as $key => $value) {
                             if ($key == 'cc') {
                                 echo 'Klassekode: ' . $value . PHP_EOL;
@@ -39,7 +41,7 @@
                 case 1:
 
                     if (isset($_POST['username'], $_POST['firstname'], $_POST['lastname'], $_POST['student_classcode'])) {
-                        $utils_ret = $utils->postStudent($_POST['username'], $_POST['firstname'], $_POST['lastname'], $_POST['student_classcode']);
+                        $utils_ret = $students->postStudent($_POST['username'], $_POST['firstname'], $_POST['lastname'], $_POST['student_classcode']);
                         foreach ($utils_ret as $key => $value) {
                             if ($key == 'u') {
                                 echo 'Brukernavn: ' . $value . PHP_EOL;

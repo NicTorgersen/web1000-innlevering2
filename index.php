@@ -1,7 +1,9 @@
 <?php
     require_once('php/database/db-connection.php');
-    require_once('php/database/utils.php');
-    $utils = new Utils($db);
+    require_once('php/database/studentModel.php');
+    require_once('php/database/classModel.php');
+    $students = new StudentModel($db);
+    $classes = new ClassModel($db);
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,12 +13,27 @@
 </head>
 <body>
     <div class="container">
-        <?php
-            require_once('php/extras/header.html');
-        ?>
+        <header>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="register-data.php">Registrer data</a>
+                    </li>
+                    <li class="dashed">
+                        <a href="">Vis data</a>
+                    </li>
+                    <li class="dashed">
+                        <a href="">Endre data</a>
+                    </li>
+                    <li class="dashed">
+                        <a href="">Slett data</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
         <div>
             <h2 class="text-blue">Velkommen til vedlikeholdsapplikasjonen.</h2>
-            <p>Det er <strong><?php echo $utils->countStudents(); ?></strong> studenter og <strong><?php echo $utils->countClasses(); ?></strong> klasser registrert.</p>
+            <p>Det er <strong><?php echo $students->countStudents(); ?></strong> studenter og <strong><?php echo $classes->countClasses(); ?></strong> klasser registrert.</p>
         </div>
     </div>
 

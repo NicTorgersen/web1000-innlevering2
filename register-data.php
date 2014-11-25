@@ -1,8 +1,8 @@
 <?php
-require_once('php/database/utils.php');
+require_once('php/database/classModel.php');
 require_once('php/database/db-connection.php');
 
-$utils = new Utils($db);
+$classes = new ClassModel($db);
 ?>
 <!DOCTYPE html>
 <html>
@@ -69,7 +69,7 @@ $utils = new Utils($db);
                     <label for="student_classcode">Klassekode</label>
                     <select id="student_classcode" name="student_classcode">
                         <?php
-                            foreach ($utils->getClassCodes() as $key => $cc) {
+                            foreach ($classes->getClassCodes() as $key => $cc) {
                                 echo "<option value='" . $cc[0] . "'>";
                                 echo $cc[0];
                                 echo "</option>";
