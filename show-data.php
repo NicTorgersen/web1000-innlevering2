@@ -12,6 +12,7 @@ $classes = new ClassModel ($db);
 <head>
     <title>Vedlikeholdsapplikasjon</title>
     <link href="css/main.css" rel="stylesheet">
+    <meta charset="utf-8">
 </head>
 <body>
     <div class="container">
