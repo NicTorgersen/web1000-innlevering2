@@ -10,28 +10,14 @@
     <link href="css/main.css" rel="stylesheet">
 </head>
 <body>
-    
-    <header>
-        <nav>
-            <ul>
-                <li>
-                    <a href="register-data.php">Registrer data</a>
-                </li>
-                <li class="dashed">
-                    <a href="">Vis data</a>
-                </li>
-                <li class="dashed">
-                    <a href="">Endre data</a>
-                </li>
-                <li class="dashed">
-                    <a href="">Slett data</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <div>
-        <p>Velkommen til vedlikeholdsapplikasjonen.</p>
-        <p>Det er <?php echo $utils->countStudents(); ?> studenter og <?php echo $utils->countClasses(); ?> klasser registrert.</p>
+    <div class="container">
+        <?php
+            require_once('php/extras/header.html');
+        ?>
+        <div>
+            <h2 class="text-blue">Velkommen til vedlikeholdsapplikasjonen.</h2>
+            <p>Det er <strong><?php echo $utils->countStudents(); ?></strong> studenter og <strong><?php echo $utils->countClasses(); ?></strong> klasser registrert.</p>
+        </div>
     </div>
 
 </body>

@@ -29,7 +29,7 @@
                 );
             }
             return array(
-                'error' => 'SCARY RED MESSAGE'
+                'error' => 0
             );
         }
 
@@ -53,7 +53,7 @@
                 'u' => $u,
                 'fn' => $fn,
                 'ln' => $ln,
-                'error' => 'ANOTHER SCARY MESSAGE'
+                'error' => 0
             );
         }
 

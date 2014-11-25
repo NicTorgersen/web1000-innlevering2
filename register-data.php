@@ -13,7 +13,24 @@ $utils = new Utils($db);
 </head>
 <body>
     <div class="container">
-        <a href="/web1000-innlevering2">Gå tilbake</a>
+        <header>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="./">Tilbake</a>
+                    </li>
+                    <li class="dashed">
+                        <a href="">Vis data</a>
+                    </li>
+                    <li class="dashed">
+                        <a href="">Endre data</a>
+                    </li>
+                    <li class="dashed">
+                        <a href="">Slett data</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
         <form method="POST" action="php/register-data.php">
             <fieldset class="register-class">
                 <legend>Registrer ny klasse</legend>

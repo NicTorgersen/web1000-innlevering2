@@ -1,4 +1,7 @@
 <?php
+    /*
+        enkel test for databasefunksjoner
+    */
     require_once('../php/database/utils.php');
     require_once('../php/database/db-connection.php');
 
