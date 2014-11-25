@@ -25,8 +25,8 @@
                     <li class="dashed">
                         <a href="">Endre data</a>
                     </li>
-                    <li class="dashed">
-                        <a href="">Slett data</a>
+                    <li>
+                        <a href="delete-data.php">Slett data</a>
                     </li>
                 </ul>
             </nav>
