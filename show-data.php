@@ -10,7 +10,7 @@ $classes = new ClassModel ($db);
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Vedlikeholdsapplikasjon</title>
+    <title>Vis data - Vedlikeholdsapplikasjon</title>
     <link href="css/main.css" rel="stylesheet">
     <meta charset="utf-8">
 </head>
