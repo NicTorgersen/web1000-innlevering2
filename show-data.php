@@ -1,10 +1,3 @@
-<?php
-    require_once('php/database/db-connection.php');
-    require_once('php/database/studentModel.php');
-    require_once('php/database/classModel.php');
-    $students = new StudentModel($db);
-    $classes = new ClassModel($db);
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +13,7 @@
                         <a href="register-data.php">Registrer data</a>
                     </li>
                     <li>
-                        <a href="show-data.php">Vis data</a>
+                        <a href="./">Tilbake</a>
                     </li>
                     <li class="dashed">
                         <a href="">Endre data</a>
@@ -32,8 +25,8 @@
             </nav>
         </header>
         <div>
-            <h2 class="text-blue">Velkommen til vedlikeholdsapplikasjonen.</h2>
-            <p>Det er <strong><?php echo $students->countStudents(); ?></strong> studenter og <strong><?php echo $classes->countClasses(); ?></strong> klasser registrert.</p>
+            <h2 class="text-blue">Vis data</h2>
+            <p>Her vises dataene.</p>
         </div>
     </div>
 

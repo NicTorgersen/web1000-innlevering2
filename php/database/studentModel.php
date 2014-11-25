@@ -10,7 +10,7 @@
             }
             throw new Exception('Database connection required.');
         }
-        
+
         public function postStudent ($u, $fn, $ln, $cc) {
             if ($this->validateUserName($u) && $this->validateName($fn, $ln) && $this->validateClassCode($cc)) {
                 $u = $this->validateUserName($u);
@@ -39,6 +39,12 @@
             $stmt = $this->db->query('SELECT count(brukernavn) as students FROM student');
             $stmt = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $stmt[0]['students'];
+        }
+
+        public function showStudents () {
+            $stmt = $this->db->query();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
         }
 
     }

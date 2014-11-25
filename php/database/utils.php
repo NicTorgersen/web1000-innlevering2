@@ -12,12 +12,12 @@
             throw new Exception('Database connection required.');
         }
 
-        private function validateFirstName ($fn) {
+        protected function validateFirstName ($fn) {
             $fn = ucfirst(trim(strip_tags($fn)));
             return (strlen($fn) < 20 && strlen($fn) >= 3) ? $fn : false;
         }
 
-        private function validateLastName ($ln) {
+        protected function validateLastName ($ln) {
             $ln = ucfirst(trim(strip_tags($ln)));
             return (strlen($ln) < 20 && strlen($ln) >= 3) ? $ln : false;
         }
