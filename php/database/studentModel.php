@@ -19,13 +19,20 @@
                 $cc = $this->validateClassCode($cc);
                 $stmt = $this->db->prepare('INSERT INTO student (brukernavn, fornavn, etternavn, klassekode) VALUES (?, ?, ?, ?)');
                 $stmt = $stmt->execute(array($u, $fn, $ln, $cc));
-                return array(
+                $return = array(
                     'u' => $u,
                     'fn' => $fn,
                     'ln' => $ln,
-                    's_cc' => $cc,
-                    'success' => $stmt
+                    's_cc' => $cc
                 );
+
+                if ($stmt) {
+                    $return['success'] = true;
+                } else {
+                    $return['error'] = true;
+                }
+
+                return $return;
             }
             return array(
                 'u' => $u,

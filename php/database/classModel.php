@@ -17,11 +17,18 @@
                 $cn = $this->validateClassName($cn);
                 $stmt = $this->db->prepare('INSERT INTO klasse (klassekode, klassenavn) VALUES (?, ?)');
                 $stmt = $stmt->execute(array($cc, $cn));
-                return array(
+                $return = array(
                     'cc' => $cc,
-                    'cn' => $cn,
-                    'success' => $stmt
+                    'cn' => $cn
                 );
+
+                if ($stmt) {
+                    $return['success'] = true;
+                } else {
+                    $return['error'] = true;
+                }
+
+                return $return;
             }
             return array(
                 'error' => 0
