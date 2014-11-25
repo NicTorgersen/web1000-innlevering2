@@ -20,10 +20,10 @@ $classes = new ClassModel ($db);
             <nav>
                 <ul>
                     <li>
-                        <a href="./">Tilbake</a>
+                        <a href="register-data.php">Registrer data</a>
                     </li>
                     <li>
-                        <a href="register-data.php">Registrer data</a>
+                        <a href="./">Forsiden</a>
                     </li>
                     <li class="dashed">
                         <a href="">Endre data</a>
@@ -36,20 +36,47 @@ $classes = new ClassModel ($db);
         </header>
         <div>
             <h2 class="text-blue">Vis data</h2>
-            <p class="text-blue">Studenter</p>
-          
+            <h2 class="text-blue">Studenter</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Brukernavn</th>
+                        <th>Fornavn</th>
+                        <th>Etternavn</th>
+                        <th>Klassekode</th>
+                    </tr>
+                </thead>
             <?php
                 foreach ($students->getStudents() as $key => $value) {
-                    echo $value["fornavn"] . " " . $value["etternavn"] . "<br>";
+                    echo "<tr>";
+                    echo "<td>" . $value['brukernavn'] . "</td>";
+                    echo "<td>" . $value['fornavn'] . "</td>";
+                    echo "<td>" . $value['etternavn'] . "</td>";
+                    echo "<td>" . $value['klassekode'] . "</td>";
+                    echo "</tr>";
                 }
             ?>
-               <p class="text-blue">Klasser</p>
+            </table>
+            <h2 class="text-blue">Klasser</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Klassekode</th>
+                        <th>Klassenavn</th>
+                    </tr>
+                </thead>
+                <tbody>
             <?php
                 foreach ($classes->getClasses() as $key => $value) {
-                   echo $value["klassekode"] . " " . $value["klassenavn"] . "<br>";
+                    echo "<tr>";
+                    echo "<td>" . $value['klassekode'] . "</td>";
+                    echo "<td>" . $value['klassenavn'] . "</td>";
+                    echo "</tr>";
                 }
 
             ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>

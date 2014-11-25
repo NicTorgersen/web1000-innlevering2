@@ -17,7 +17,7 @@ $classes = new ClassModel($db);
             <nav>
                 <ul>
                     <li>
-                        <a href="./">Tilbake</a>
+                        <a href="./">Forsiden</a>
                     </li>
                     <li>
                         <a href="show-data.php">Vis data</a>
@@ -32,7 +32,7 @@ $classes = new ClassModel($db);
             </nav>
         </header>
         <div>
-            <h2>Registrer data</h2>
+            <h2 class="text-blue">Registrer data</h2>
             <p>Registrer data her</p>
             <form method="POST" action="php/register-data.php">
                 <fieldset class="register-class">

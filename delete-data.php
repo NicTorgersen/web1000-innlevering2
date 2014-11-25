@@ -20,9 +20,6 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="./">Tilbake</a>
-                    </li>
-                    <li>
                         <a href="register-data.php">Registrer data</a>
                     </li>
                     <li>
@@ -31,11 +28,15 @@
                     <li class="dashed">
                         <a href="">Endre data</a>
                     </li>
+                    <li>
+                        <a href="./">Forsiden</a>
+                    </li>
                 </ul>
             </nav>
         </header>
 
         <div>
+            <h2 class="text-blue">Slett data</h2>
             <h2 class="text-blue">Slett klasser</h2>
             <p>Obs! Kan ikke slette klasser som har studenter, slett studentene først.</p>
             <form method="POST" action="php/delete-data.php">
@@ -60,7 +61,9 @@
                     </tbody>
                 </table>
                 <input type="hidden" name="type" value="0">
-                <input type="submit" name="submit" value="Slett klass(er)">
+                <div>
+                    <input type="submit" name="submit" value="Slett klass(er)">
+                </div>
             </form>
 
             <h2 class="text-blue">Slett studenter</h2>
@@ -90,7 +93,9 @@
                     </tbody>
                 </table>
                 <input type="hidden" name="type" value="1">
-                <input type="submit" name="submit" value="Slett student(er)">
+                <div>
+                    <input type="submit" name="submit" value="Slett student(er)">
+                </div>
             </form>
         </div>
 
