@@ -43,5 +43,12 @@
 
         public function getClassCodes () {
             return $this->db->query('SELECT klassekode FROM klasse')->fetchAll(PDO::FETCH_NUM);
+          }  
+
+        public function getClasses () {
+            $stmt = $this->db->query('SELECT klassekode, klassenavn FROM klasse');
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }
+
+    

@@ -25,16 +25,13 @@
                     if (isset($_POST['classcode'], $_POST['classname'])) {
                         $utils_ret = $classes->postClass($_POST['classcode'], $_POST['classname']);
                         foreach($utils_ret as $key => $value) {
-                            if ($key == 'cc') {
-                                echo 'Klassekode: ' . $value . PHP_EOL;
-                            } else if ($key == 'cn') {
-                                echo 'Klassenavn: ' . $value . PHP_EOL;
-                            } else if ($key == 'success') {
+                            if ($key == 'success') {
                                 echo '<span class="success">' . $value . '</span>' . PHP_EOL;
                             } else if ($key == 'error') {
                                 echo '<span class="error">' . $value . '</span>' . PHP_EOL;
                             }
                         }
+                       echo '<a href="../register-data.php">Tilbake</a>';
                     }
 
                     break;
@@ -57,6 +54,7 @@
                                 echo '<span class="error">' . $value . '</span>';
                             }
                         } 
+                        echo '<a href="../register-data.php">Tilbake</a>';
                     }
 
                     break;

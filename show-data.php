@@ -5,6 +5,7 @@ require_once('php/database/studentModel.php');
 require_once('php/database/classModel.php');
 
 $students = new StudentModel($db);
+$classes = new ClassModel ($db);
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,11 +35,19 @@ $students = new StudentModel($db);
         </header>
         <div>
             <h2 class="text-blue">Vis data</h2>
-            <p>Her vises dataene.</p>
+            <p class="text-blue">Studenter</p>
+          
             <?php
                 foreach ($students->getStudents() as $key => $value) {
                     echo $value["fornavn"] . " " . $value["etternavn"] . "<br>";
                 }
+            ?>
+               <p class="text-blue">Klasser</p>
+            <?php
+                foreach ($classes->getClasses() as $key => $value) {
+                   echo $value["klassekode"] . " " . $value["klassenavn"] . "<br>";
+                }
+
             ?>
         </div>
     </div>
