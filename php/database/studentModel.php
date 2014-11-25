@@ -48,7 +48,7 @@
             return $stmt[0]['students'];
         }
 
-        public function showStudents () {
+        public function getStudents () {
             $stmt = $this->db->query('SELECT brukernavn, fornavn, etternavn, klassekode FROM student');
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
