@@ -5,12 +5,15 @@
 
     $students = new StudentModel($db);
     $classes = new ClassModel($db);
-If (isset($_POST['update'])){
-$UpdateQuery = "UPDATE klasse SET klassekode='?', Klassenavn='?' WHERE klassekode='?'";
+
+
+if (isset($_POST['update'], $_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden'])){
+$UpdateQuery = "UPDATE klasse SET klassekode='klassekode', Klassenavn='klassenavn' WHERE klassekode='hidden'";
 $db = new PDO('mysql:host=localhost;dbname=884604', $user, $pass);
-$db->prepare($UpdateQuery);
-$db->execute(array($_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden']));
-}
+$stmt = $db->prepare($UpdateQuery); 
+var_dump($stmt->fetch(PDO::FETCH_ASSOC));
+$stmt->execute(array($_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden']));
+};
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,14 +29,16 @@ $db->execute(array($_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden'])
             <nav>
                 <ul>
                     <li>
+                        <a href="./">Forsiden</a>
+                    </li>
+                    <li>
                         <a href="register-data.php">Registrer data</a>
                     </li>
                     <li>
                         <a href="show-data.php">Vis data</a>
                     </li>
-                  
                     <li>
-                        <a href="./">Forsiden</a>
+                        <a href="endre.php">Endre data</a>
                     </li>
                 </ul>
             </nav>
@@ -52,7 +57,7 @@ $db->execute(array($_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden'])
                             <th>Klassekode</th>
                             <th>Klassenavn</th>
                         </tr>
-                    </thead>
+                    </thead> 
                     <tbody>
                         <?php
                         foreach ($classes->getClasses() as $key => $class) {
@@ -60,7 +65,9 @@ $db->execute(array($_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden'])
                             echo '<td><input class="deleteClass" type="radio" name="deleteClass[]" value="' . $class['klassekode'] . '"></td>'.PHP_EOL;
                             echo '<td><input type="text" name="klassekode" value="' . $class['klassekode'] . '"></td>'.PHP_EOL;
                             echo '<td><input type="text" name="klassenavn" value="' . $class['klassenavn'] . '"></td>'.PHP_EOL;
+                            echo '<input type="hidden" name="hidden" value=" '. $class['klassekode'] . '">'.PHP_EOL;
                             echo '</tr>'.PHP_EOL;
+
                         }
                         ?>
 

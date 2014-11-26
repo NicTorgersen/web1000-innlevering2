@@ -1,16 +1,27 @@
 <?php
-require_once('php/database/studentModel.php');
-require_once('php/database/db-connection.php');
+    require_once('php/database/db-connection.php');
+    require_once('php/database/studentModel.php');
+    require_once('php/database/classModel.php');
 
-$students = new StudentModel($db);
+    $students = new StudentModel($db);
+    $classes = new ClassModel($db);
+
+
+if (isset($_POST['update'], $_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden'])){
+$UpdateQuery = "UPDATE klasse SET klassekode='klassekode', Klassenavn='klassenavn' WHERE klassekode='hidden'";
+$db = new PDO('mysql:host=localhost;dbname=884604', $user, $pass);
+$stmt = $db->prepare($UpdateQuery); 
+var_dump($stmt->fetch(PDO::FETCH_ASSOC));
+$stmt->execute(array($_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden']));
+};
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Endre klasse Data - Vedlikeholdsapplikasjon</title>
+    <title>Endre data - Vedlikeholdsapplikasjon</title>
     <link href="css/main.css" rel="stylesheet">
     <meta charset="utf-8">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -18,75 +29,76 @@ $students = new StudentModel($db);
             <nav>
                 <ul>
                     <li>
-                        <a href="./">Tilbake</a>
+                        <a href="./">Forsiden</a>
+                    </li>
+                    <li>
+                        <a href="register-data.php">Registrer data</a>
                     </li>
                     <li>
                         <a href="show-data.php">Vis data</a>
                     </li>
-                    <li class="endre.php">
-                        <a href="endre.php">Endre data</a>
-                    </li>
                     <li>
-                        <a href="delete-data.php">Slett data</a>
+                        <a href="endre.php">Endre data</a>
                     </li>
                 </ul>
             </nav>
         </header>
+
         <div>
-            <h2>Endre Student</h2>
             
-            <form method="POST" action="php/register-data.php">
-                <fieldset class="register-class">
-                    <legend>Endre klassekode</legend>
-                    <div>
-                        <label for="classcode">Gammel klassekode</label>
-                        <input type="text" id="classcode" name="classcode" placeholder="gb" pattern="{3,3}" minlength="3" maxlength="3" title="Kun 2 bokstaver og ett tall" required>
-                    </div>
-                    <div>
-                        <label for="classname">Ny klassekode</label>
-                        <input type="text" id="classname" name="classname" placeholder="Geir" pattern="{2,30}" minlength="2" maxlength="30" title="Mellom 2 og 30 bokstaver og tall" required>
-                    </div>
-                    <div>
-                        <div>
-                        <label for="classname">Ny klassekode</label>
-                        <input type="text" id="classname" name="classname" placeholder="Bjarvin" pattern="{2,30}" minlength="2" maxlength="30" title="Mellom 2 og 30 bokstaver og tall" required>
-                    </div>
-                    <div>
-                        <label for="classname">Ny klassekode</label>
-                        <input type="text" id="classname" name="classname" placeholder="IS1" pattern="{2,30}" minlength="2" maxlength="30" title="Mellom 2 og 30 bokstaver og tall" required>
-                    </div>
-                        <input type="submit" name="submit" value="Endre">
-                    </div>
-                </fieldset>
-                <input type="hidden" name="type" value="0">
+            <h2 class="text-blue">Endre tudenter</h2>
+            
+            <form method="POST" action="endre-klasse.php">
+                <div>
+        <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Brukernavn</th>
+                            <th>Fornavn</th>
+                            <th>Etternavn</th>
+                            <th>Klassekode</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($students->getStudents() as $key => $student) {
+                            echo '<tr>'.PHP_EOL;
+                            echo '<td></td>'.PHP_EOL;
+                            echo '<td>' . $student['brukernavn'] . '</td>'.PHP_EOL;
+                            echo '<td><input type="text" name="klassenavn" value="' . $student['fornavn'] . '"></td>'.PHP_EOL;
+                            echo '<td><input type="text" name="klassenavn" value="' . $student['etternavn'] . '"></td>'.PHP_EOL;
+                            echo '<td><input type="text" name="klassenavn" value="' . $student['klassekode'] . '"></td>'.PHP_EOL;
+                            echo '<input type="hidden" name="hidden" value=" '. $student['brukernavn'] . '">'.PHP_EOL;
+                            echo '</tr>'.PHP_EOL;
+                        }
+                        ?>
+                    </tbody>
+                </table>
+                <input type="submit" name="update" value="update"
                 
-            </form>
-
-            <form method="POST" action="php/register-data.php">
-                <fieldset class="register-class">
-                    <legend>Endre klassenavn</legend>
-                    <div>
-                        <label for="classcode">Gammelt klassenavn</label>
-                        <input type="text" id="classcode" name="classcode" placeholder="Informasjonssystemer 1. år" pattern="{3,3}" minlength="3" maxlength="3" title="Kun 2 bokstaver og ett tall" required>
-                    </div>
-                    <div>
-                        <label for="classname">Nytt klassenavn</label>
-                        <input type="text" id="classname" name="classname" placeholder="Informasjonssystemer 2. år" pattern="{2,30}" minlength="2" maxlength="30" title="Mellom 2 og 30 bokstaver og tall" required>
-                    </div>
-                    <div>
-                        <input type="submit" name="submit" value="Endre">
-                    </div>
-                </fieldset>
-                <input type="hidden" name="type" value="0">
+</div>
+    
                 
-            </form>
-
-        
-                </fieldset>
-                <input type="hidden" name="type" value="1">
             </form>
         </div>
+
     </div>
+
+    <script type="text/javascript">
+        $("#checkAllClasses").click(function () {
+            $('.deleteClass').prop('checked', this.checked);
+        });
+        $("#checkAllStudents").click(function () {
+            $('.deleteStudent').prop('checked', this.checked);
+        })
+    </script>
 
 </body>
 </html>
+
+
+
+
+
+
