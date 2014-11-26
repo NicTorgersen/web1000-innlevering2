@@ -7,12 +7,12 @@
     $classes = new ClassModel($db);
 
 
-if (isset($_POST['update'], $_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden'])){
-$UpdateQuery = "UPDATE klasse SET klassekode='klassekode', Klassenavn='klassenavn' WHERE klassekode='hidden'";
+if (isset($_POST['update'], $_POST['fornavn'], $_POST['etternavn'], $_POST['hidden'], $_POST['klassekode'])){
+$UpdateQuery = "UPDATE student SET fornavn='fornavn', etternavn='etternavn', klassekode='klassekode' WHERE brukernavn='hidden'";
 $db = new PDO('mysql:host=localhost;dbname=884604', $user, $pass);
 $stmt = $db->prepare($UpdateQuery); 
 var_dump($stmt->fetch(PDO::FETCH_ASSOC));
-$stmt->execute(array($_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden']));
+$stmt->execute(array($_POST['fornavn'], $_POST['etternavn'], $_POST['klassekode'], $_POST['hidden']));
 };
 ?>
 <!DOCTYPE html>
@@ -48,7 +48,7 @@ $stmt->execute(array($_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden'
             
             <h2 class="text-blue">Endre tudenter</h2>
             
-            <form method="POST" action="endre-klasse.php">
+            <form method="POST" action="endre-student.php">
                 <div>
         <table>
                     <thead>
@@ -66,9 +66,9 @@ $stmt->execute(array($_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden'
                             echo '<tr>'.PHP_EOL;
                             echo '<td></td>'.PHP_EOL;
                             echo '<td>' . $student['brukernavn'] . '</td>'.PHP_EOL;
-                            echo '<td><input type="text" name="klassenavn" value="' . $student['fornavn'] . '"></td>'.PHP_EOL;
-                            echo '<td><input type="text" name="klassenavn" value="' . $student['etternavn'] . '"></td>'.PHP_EOL;
-                            echo '<td><input type="text" name="klassenavn" value="' . $student['klassekode'] . '"></td>'.PHP_EOL;
+                            echo '<td><input type="text" name="fornavn" value="' . $student['fornavn'] . '"></td>'.PHP_EOL;
+                            echo '<td><input type="text" name="etternavn" value="' . $student['etternavn'] . '"></td>'.PHP_EOL;
+                            echo '<td><input type="text" name="klassekode" value="' . $student['klassekode'] . '"></td>'.PHP_EOL;
                             echo '<input type="hidden" name="hidden" value=" '. $student['brukernavn'] . '">'.PHP_EOL;
                             echo '</tr>'.PHP_EOL;
                         }

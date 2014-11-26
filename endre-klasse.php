@@ -62,8 +62,8 @@ $stmt->execute(array($_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden'
                         <?php
                         foreach ($classes->getClasses() as $key => $class) {
                             echo '<tr>'.PHP_EOL;
-                            echo '<td><input class="deleteClass" type="radio" name="deleteClass[]" value="' . $class['klassekode'] . '"></td>'.PHP_EOL;
-                            echo '<td><input type="text" name="klassekode" value="' . $class['klassekode'] . '"></td>'.PHP_EOL;
+                            echo '<td></td>'.PHP_EOL;
+                            echo '<td>' . $class['klassekode'] . '</td>'.PHP_EOL;
                             echo '<td><input type="text" name="klassenavn" value="' . $class['klassenavn'] . '"></td>'.PHP_EOL;
                             echo '<input type="hidden" name="hidden" value=" '. $class['klassekode'] . '">'.PHP_EOL;
                             echo '</tr>'.PHP_EOL;
