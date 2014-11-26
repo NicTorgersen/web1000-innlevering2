@@ -12,6 +12,14 @@
             throw new Exception('Database connection required.');
         }
 
+        public function getPlural ($count, $singular, $plural) {
+            if ($count == 1) {
+                return $singular;
+            } else {
+                return $plural;
+            }
+        }
+
         protected function generateQMarks (array $qMarkThis) {
             $qMarks = "";
             for ($i = 0; $i < count($qMarkThis); $i++) {

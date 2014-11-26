@@ -3,7 +3,10 @@
     require_once('php/database/studentModel.php');
     require_once('php/database/classModel.php');
     $students = new StudentModel($db);
+    $studentCount = $students->countStudents();
     $classes = new ClassModel($db);
+    $classCount = $classes->countClasses();
+    $utils = new Utils($db);
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,7 +36,17 @@
         </header>
         <div>
             <h2 class="text-blue">Velkommen til vedlikeholdsapplikasjonen.</h2>
-            <p>Det er <strong><?php echo $students->countStudents(); ?></strong> studenter og <strong><?php echo $classes->countClasses(); ?></strong> klasser registrert.</p>
+            <p>Det er
+                    <?php
+                        echo '<strong>'.$studentCount.'</strong> ';
+                        echo $utils->getPlural($studentCount, 'student', 'studenter');
+                    ?>
+                og
+                    <?php
+                        echo '<strong>'.$classCount.'</strong> ';
+                        echo $utils->getPlural($classCount, 'klasse', 'klasser');
+                    ?>
+                registrert.</p>
         </div>
     </div>
 
