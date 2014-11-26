@@ -1,16 +1,18 @@
 <?php
-require_once('php/database/classModel.php');
-require_once('php/database/db-connection.php');
+    require_once('php/database/db-connection.php');
+    require_once('php/database/studentModel.php');
+    require_once('php/database/classModel.php');
 
-$classes = new ClassModel($db);
+    $students = new StudentModel($db);
+    $classes = new ClassModel($db);
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Endre klasse Data - Vedlikeholdsapplikasjon</title>
+    <title>Endre data - Vedlikeholdsapplikasjon</title>
     <link href="css/main.css" rel="stylesheet">
     <meta charset="utf-8">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -21,7 +23,7 @@ $classes = new ClassModel($db);
                         <a href="./">Tilbake</a>
                     </li>
                     <li>
-                        <a href="show-data.php">Vis data</a>
+                        <a href="register-data.php">Registrer data</a>
                     </li>
                     <li class="endre.php">
                         <a href="endre.php">Endre data</a>
@@ -32,53 +34,57 @@ $classes = new ClassModel($db);
                 </ul>
             </nav>
         </header>
+
         <div>
-            <h2>Endre klasser</h2>
             
-            <form method="POST" action="php/register-data.php">
-                <fieldset class="register-class">
-                    <legend>Endre klassekode</legend>
-                    <div>
-                        <label for="classcode">Gammel klassekode</label>
-                        <input type="text" id="classcode" name="classcode" placeholder="IS1" pattern="{3,3}" minlength="3" maxlength="3" title="Kun 2 bokstaver og ett tall" required>
-                    </div>
-                    <div>
-                        <label for="classname">Ny klassekode</label>
-                        <input type="text" id="classname" name="classname" placeholder="IS2" pattern="{2,30}" minlength="2" maxlength="30" title="Mellom 2 og 30 bokstaver og tall" required>
-                    </div>
-                    <div>
-                        <input type="submit" name="submit" value="Endre">
-                    </div>
-                </fieldset>
-                <input type="hidden" name="type" value="0">
-                
-            </form>
+            <h2 class="text-blue">Endre klasser</h2>
+            
+            <form method="POST" action="php/delete-data.php">
+                <div>
+        <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Klassekode</th>
+                            <th>Klassenavn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($classes->getClasses() as $key => $class) {
+                            echo '<tr>'.PHP_EOL;
+                            echo '<td><input class="deleteClass" type="radio" name="deleteClass[]" value="' . $class['klassekode'] . '"></td>'.PHP_EOL;
+                            echo '<td>' . $class['klassekode'] . '</td>'.PHP_EOL;
+                            echo '<td>' . $class['klassenavn'] . '</td>'.PHP_EOL;
+                            echo '</tr>'.PHP_EOL;
+                        }
+                        ?>
 
-            <form method="POST" action="php/register-data.php">
-                <fieldset class="register-class">
-                    <legend>Endre klassenavn</legend>
-                    <div>
-                        <label for="classcode">Gammelt klassenavn</label>
-                        <input type="text" id="classcode" name="classcode" placeholder="Informasjonssystemer 1. år" pattern="{3,3}" minlength="3" maxlength="3" title="Kun 2 bokstaver og ett tall" required>
-                    </div>
-                    <div>
-                        <label for="classname">Nytt klassenavn</label>
-                        <input type="text" id="classname" name="classname" placeholder="Informasjonssystemer 2. år" pattern="{2,30}" minlength="2" maxlength="30" title="Mellom 2 og 30 bokstaver og tall" required>
-                    </div>
-                    <div>
-                        <input type="submit" name="submit" value="Endre">
-                    </div>
-                </fieldset>
-                <input type="hidden" name="type" value="0">
+                    </tbody>
+                </table>
+                 <input type="submit" name="submit" value="Endre">
+</div>
+    
                 
-            </form>
-
-        
-                </fieldset>
-                <input type="hidden" name="type" value="1">
             </form>
         </div>
+
     </div>
+
+    <script type="text/javascript">
+        $("#checkAllClasses").click(function () {
+            $('.deleteClass').prop('checked', this.checked);
+        });
+        $("#checkAllStudents").click(function () {
+            $('.deleteStudent').prop('checked', this.checked);
+        })
+    </script>
 
 </body>
 </html>
+
+
+
+
+
+
