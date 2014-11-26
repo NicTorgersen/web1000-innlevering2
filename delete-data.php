@@ -25,8 +25,8 @@
                     <li>
                         <a href="show-data.php">Vis data</a>
                     </li>
-                    <li class="dashed">
-                        <a href="">Endre data</a>
+                    <li>
+                        <a href="delete-data.php">Slett data</a>
                     </li>
                     <li>
                         <a href="./">Forsiden</a>
