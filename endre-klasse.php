@@ -20,16 +20,14 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="./">Tilbake</a>
-                    </li>
-                    <li>
                         <a href="register-data.php">Registrer data</a>
                     </li>
-                    <li class="endre.php">
-                        <a href="endre.php">Endre data</a>
-                    </li>
                     <li>
-                        <a href="delete-data.php">Slett data</a>
+                        <a href="show-data.php">Vis data</a>
+                    </li>
+                  
+                    <li>
+                        <a href="./">Forsiden</a>
                     </li>
                 </ul>
             </nav>
@@ -54,8 +52,8 @@
                         foreach ($classes->getClasses() as $key => $class) {
                             echo '<tr>'.PHP_EOL;
                             echo '<td><input class="deleteClass" type="radio" name="deleteClass[]" value="' . $class['klassekode'] . '"></td>'.PHP_EOL;
-                            echo '<td>' . $class['klassekode'] . '</td>'.PHP_EOL;
-                            echo '<td>' . $class['klassenavn'] . '</td>'.PHP_EOL;
+                            echo '<td>' . "<input type=text name=klassekode value=" . $class['klassekode'] . '</td>'.PHP_EOL;
+                            echo '<td>' . "<input type=text name=klassenavn value=" . $class['klassenavn'] . '</td>'.PHP_EOL;
                             echo '</tr>'.PHP_EOL;
                         }
                         ?>
