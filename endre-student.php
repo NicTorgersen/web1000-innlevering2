@@ -96,9 +96,3 @@ $stmt->execute(array($_POST['fornavn'], $_POST['etternavn'], $_POST['klassekode'
 
 </body>
 </html>
-
-
-
-
-
-
