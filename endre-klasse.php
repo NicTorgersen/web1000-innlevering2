@@ -5,6 +5,12 @@
 
     $students = new StudentModel($db);
     $classes = new ClassModel($db);
+If (isset($_POST['update'])){
+$UpdateQuery = "UPDATE klasse SET klassekode='?', Klassenavn='?' WHERE klassekode='?'";
+$db = new PDO('mysql:host=localhost;dbname=884604', $user, $pass);
+$db->prepare($UpdateQuery);
+$db->execute(array($_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden']));
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,7 +43,7 @@
             
             <h2 class="text-blue">Endre klasser</h2>
             
-            <form method="POST" action="php/delete-data.php">
+            <form method="POST" action="endre-klasse.php">
                 <div>
         <table>
                     <thead>
@@ -60,7 +66,8 @@
 
                     </tbody>
                 </table>
-                 <input type="submit" name="submit" value="Endre">
+                <input type="submit" name="update" value="update"
+                
 </div>
     
                 
