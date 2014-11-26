@@ -26,8 +26,8 @@ $students = new StudentModel($db);
                     <li class="endre.php">
                         <a href="endre.php">Endre data</a>
                     </li>
-                    <li class="dashed">
-                        <a href="">Slett data</a>
+                    <li>
+                        <a href="delete-data.php">Slett data</a>
                     </li>
                 </ul>
             </nav>

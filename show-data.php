@@ -25,8 +25,8 @@ $classes = new ClassModel ($db);
                     <li>
                         <a href="./">Forsiden</a>
                     </li>
-                    <li class="dashed">
-                        <a href="">Endre data</a>
+                    <li class="endre.php">
+                        <a href="endre.php">Endre data</a>
                     </li>
                     <li>
                         <a href="delete-data.php">Slett data</a>
