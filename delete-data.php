@@ -20,16 +20,16 @@
             <nav>
                 <ul>
                     <li>
+                        <a href="./">Forsiden</a>
+                    </li>
+                    <li>
                         <a href="register-data.php">Registrer data</a>
                     </li>
                     <li>
                         <a href="show-data.php">Vis data</a>
                     </li>
                     <li>
-                        <a href="delete-data.php">Slett data</a>
-                    </li>
-                    <li>
-                        <a href="./">Forsiden</a>
+                        <a href="endre.php">Endre data</a>
                     </li>
                 </ul>
             </nav>

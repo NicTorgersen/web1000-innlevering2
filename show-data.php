@@ -20,10 +20,10 @@ $classes = new ClassModel ($db);
             <nav>
                 <ul>
                     <li>
-                        <a href="register-data.php">Registrer data</a>
+                        <a href="./">Forsiden</a>
                     </li>
                     <li>
-                        <a href="./">Forsiden</a>
+                        <a href="register-data.php">Registrer data</a>
                     </li>
                     <li class="endre.php">
                         <a href="endre.php">Endre data</a>
