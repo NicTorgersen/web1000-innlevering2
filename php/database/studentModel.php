@@ -10,7 +10,36 @@
             }
             throw new Exception('Database connection required.');
         }
+		
+		public function updateStudent ($u, $fn, $ln, $cc) {
+			$u = $this->validateUserName($u);
+			$fn = $this->validateFirstName($fn);
+			$ln = $this->validateLastName($ln);
+            $cc = $this->validateClassCode($cc);
+            
+            if ($cc && $u && $fn && $ln) {
+                $stmt = $this->db->prepare("UPDATE klasse SET fornavn = ?, etternavn = ?, klassekode = ? WHERE brukernavn = ?");
+                $stmt = $stmt->execute(array($fn, $ln, $cc, $u));
 
+                $return = array(
+					'u' => $u,
+					'fn' => $fn,
+					'ln' => $ln,
+                    'cc' => $cc
+                );
+
+                if ($stmt) {
+                    $return['success'] = true;
+                } else {
+                    $return['error'] = $stmt;
+                }
+
+                return $return;
+            } else {
+				return "error, some field didn't validate";
+			}
+        }
+		
         public function deleteStudent (array $u) {
             $cleanVals = $this->validateUserNames($u);
             $qMarks = $this->generateQMarks($cleanVals);

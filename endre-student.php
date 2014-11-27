@@ -7,12 +7,8 @@
     $classes = new ClassModel($db);
 
 
-if (isset($_POST['update'], $_POST['fornavn'], $_POST['etternavn'], $_POST['hidden'], $_POST['klassekode'])){
-$UpdateQuery = "UPDATE student SET fornavn='fornavn', etternavn='etternavn', klassekode='klassekode' WHERE brukernavn='hidden'";
-$db = new PDO('mysql:host=localhost;dbname=884604', $user, $pass);
-$stmt = $db->prepare($UpdateQuery); 
-var_dump($stmt->fetch(PDO::FETCH_ASSOC));
-$stmt->execute(array($_POST['fornavn'], $_POST['etternavn'], $_POST['klassekode'], $_POST['hidden']));
+if (isset($_POST['endre'], $_POST['klassenavn'], $_POST['klassekode'])){
+	$students->updateStudent ($_POST['klassekode'], $_POST ['klassenavn']);
 };
 ?>
 <!DOCTYPE html>

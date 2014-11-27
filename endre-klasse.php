@@ -1,18 +1,13 @@
 <?php
     require_once('php/database/db-connection.php');
-    require_once('php/database/studentModel.php');
     require_once('php/database/classModel.php');
 
-    $students = new StudentModel($db);
     $classes = new ClassModel($db);
 
 
-if (isset($_POST['update'], $_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden'])){
-$UpdateQuery = "UPDATE klasse SET klassekode='klassekode', Klassenavn='klassenavn' WHERE klassekode='hidden'";
-$db = new PDO('mysql:host=localhost;dbname=884604', $user, $pass);
-$stmt = $db->prepare($UpdateQuery); 
-var_dump($stmt->fetch(PDO::FETCH_ASSOC));
-$stmt->execute(array($_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden']));
+
+if (isset($_POST['endre'], $_POST['klassenavn'], $_POST['klassekode'])){
+	$classes->updateClass ($_POST['klassekode'], $_POST ['klassenavn']);
 };
 ?>
 <!DOCTYPE html>
@@ -48,7 +43,7 @@ $stmt->execute(array($_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden'
             
             <h2 class="text-blue">Endre klasser</h2>
             
-            <form method="POST" action="endre-klasse.php">
+            
                 <div>
         <table>
                     <thead>
@@ -61,24 +56,26 @@ $stmt->execute(array($_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden'
                     <tbody>
                         <?php
                         foreach ($classes->getClasses() as $key => $class) {
-                            echo '<tr>'.PHP_EOL;
-                            echo '<td></td>'.PHP_EOL;
+                            echo '<form method = "POST" action ="" >';
+							echo '<tr>'.PHP_EOL;
+                            echo '<td> <input type= "submit" name ="endre" value ="endre"> </td>'.PHP_EOL;
                             echo '<td>' . $class['klassekode'] . '</td>'.PHP_EOL;
                             echo '<td><input type="text" name="klassenavn" value="' . $class['klassenavn'] . '"></td>'.PHP_EOL;
-                            echo '<input type="hidden" name="hidden" value=" '. $class['klassekode'] . '">'.PHP_EOL;
                             echo '</tr>'.PHP_EOL;
+							echo '<input type="hidden" name="klassekode" value="' . $class['klassekode'] . '">'.PHP_EOL;
+							echo '</form>';
 
                         }
                         ?>
 
                     </tbody>
                 </table>
-                <input type="submit" name="update" value="update"
+                
                 
 </div>
     
                 
-            </form>
+          
         </div>
 
     </div>
@@ -94,9 +91,5 @@ $stmt->execute(array($_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden'
 
 </body>
 </html>
-
-
-
-
 
 

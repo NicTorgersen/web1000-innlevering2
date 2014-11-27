@@ -29,11 +29,11 @@
 <h2 class="text-blue">Gjør endringer</h2>
 
 <br>
-<input type="radio" name="valg" value="student" onclick="window.open('endre-student.php')" /> Endre student
+<input type="radio" name="valg" value="student" onclick="location.href='endre-student.php'" /> Endre student
 <br>
 
 <br>
-<input type="radio" name="valg" value="klasse" onclick="window.open('endre-klasse.php')" /> Endre klasse
+<input type="radio" name="valg" value="klasse" onclick="location.href='endre-klasse.php'" /> Endre klasse
 <br>
 </form>
 
