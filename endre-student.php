@@ -66,9 +66,13 @@ if (isset($_POST['endre'], $_POST['fornavn'], $_POST ['etternavn'], $_POST ['kla
                                     <select name="klassekode">
                                         <?php
                                         foreach($classes->getClasses() as $key => $class) {
-                                            if ($student['klassekode'] != $class['klassekode']) {
+                                            if ($student['klassekode'] == $class['klassekode']) {
                                         ?>
-                                            <option value="<?php echo $class['klassekode'] ?>"><?php echo $class['klassekode']; ?></option>
+                                            <option selected value="<?php echo $class['klassekode'] ?>"><?php echo $class['klassekode']; ?></option>
+                                        <?php
+                                            } else {
+                                        ?>
+                                            <option value="<?php echo $class['klassekode'] ?>"><?php echo $class['klassekode'] ?></option>
                                         <?php
                                             }
                                         }
