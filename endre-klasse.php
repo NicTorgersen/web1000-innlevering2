@@ -42,7 +42,7 @@ if (isset($_POST['endre'], $_POST['klassenavn'], $_POST['klassekode'])){
         <div>
             
             <h2 class="text-blue">Endre klasser</h2>
-            
+            <a href="endre.php">Tilbake</a>
             
                 <div>
         <table>

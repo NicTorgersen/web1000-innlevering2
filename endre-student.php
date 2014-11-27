@@ -9,7 +9,7 @@
 
 
 if (isset($_POST['endre'], $_POST['fornavn'], $_POST ['etternavn'], $_POST ['klassekode'], $_POST['brukernavn'])){
-    $students->updateClass ($_POST['brukernavn'], $_POST ['fornavn'], $_POST ['etternavn'], $_POST ['klassekode']);
+    $students->updateStudent ($_POST['brukernavn'], $_POST ['fornavn'], $_POST ['etternavn'], $_POST ['klassekode']);
 
 };
 ?>
@@ -44,7 +44,8 @@ if (isset($_POST['endre'], $_POST['fornavn'], $_POST ['etternavn'], $_POST ['kla
 
         <div>
             
-            <h2 class="text-blue">Endre klasser</h2>
+            <h2 class="text-blue">Endre Student</h2>
+            <a href="endre.php">Tilbake</a>
             
             
                 <div>
@@ -68,15 +69,18 @@ if (isset($_POST['endre'], $_POST['fornavn'], $_POST ['etternavn'], $_POST ['kla
                             echo '<td><input type="text" name="fornavn" value="' . $student['fornavn'] . '"></td>'.PHP_EOL;
                             echo '<td><input type="text" name="etternavn" value="' . $student['etternavn'] . '"></td>'.PHP_EOL;
                             //echo '<td><input type="text" name="klassekode" value="' . $class['klassekode'] . '"></td>'.PHP_EOL;
+                           echo '<select name="klassekode">';
+                           foreach ($classes as $key => $class) {
+                            echo '<td><option value="' . $class['klassekode'] . '">' . $class['klassenavn'] . '></td></option>'.PHP_EOL;
+                            }
+                            echo '</form>';
+                            echo '<td><select>';
+                            echo '</select></td>';
                             echo '</tr>'.PHP_EOL;
                             echo '<input type="hidden" name="brukernavn" value="' . $student['brukernavn'] . '">'.PHP_EOL;
-                           
-                            //echo '<input type="text" name="klassekode" value="' . $class['klassekode'] . '">'.PHP_EOL;
-                            echo '</form>';
-
+                
                         }
                         ?>
-
                     </tbody>
                 </table>
                 
