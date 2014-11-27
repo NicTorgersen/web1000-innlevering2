@@ -4,7 +4,7 @@
         "db" => array(
             "username" => "root",
             "password" => "",
-            "dbname" => "884604",
+            "dbname" => "884608",
             "host" => "localhost"
         )
     );

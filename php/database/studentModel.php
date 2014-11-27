@@ -18,7 +18,7 @@
             $cc = $this->validateClassCode($cc);
             
             if ($cc && $u && $fn && $ln) {
-                $stmt = $this->db->prepare("UPDATE klasse SET fornavn = ?, etternavn = ?, klassekode = ? WHERE brukernavn = ?");
+                $stmt = $this->db->prepare("UPDATE student SET fornavn = ?, etternavn = ?, klassekode = ? WHERE brukernavn = ?");
                 $stmt = $stmt->execute(array($fn, $ln, $cc, $u));
 
                 $return = array(
