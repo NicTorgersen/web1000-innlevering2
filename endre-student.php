@@ -5,7 +5,7 @@
 
     $students = new StudentModel($db);
     $classes = new ClassModel($db);
-    
+
 if (isset($_POST['endre'], $_POST['fornavn'], $_POST ['etternavn'], $_POST ['klassekode'], $_POST['brukernavn'])){
     $students->updateStudent ($_POST['brukernavn'], $_POST ['fornavn'], $_POST ['etternavn'], $_POST ['klassekode']);
 };
@@ -66,9 +66,11 @@ if (isset($_POST['endre'], $_POST['fornavn'], $_POST ['etternavn'], $_POST ['kla
                                     <select name="klassekode">
                                         <?php
                                         foreach($classes->getClasses() as $key => $class) {
+                                            if ($student['klassekode'] != $class['klassekode']) {
                                         ?>
                                             <option value="<?php echo $class['klassekode'] ?>"><?php echo $class['klassenavn']; ?></option>
                                         <?php
+                                            }
                                         }
                                         ?>
                                     </select>
