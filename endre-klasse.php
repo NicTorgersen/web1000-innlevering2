@@ -5,9 +5,9 @@
     $classes = new ClassModel($db);
 
 
-
 if (isset($_POST['endre'], $_POST['klassenavn'], $_POST['klassekode'])){
 	$classes->updateClass ($_POST['klassekode'], $_POST ['klassenavn']);
+
 };
 ?>
 <!DOCTYPE html>
