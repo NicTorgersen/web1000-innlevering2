@@ -4,11 +4,13 @@
     require_once('php/database/classModel.php');
 
     $students = new StudentModel($db);
+    
     $classes = new ClassModel($db);
 
 
-if (isset($_POST['endre'], $_POST['klassenavn'], $_POST['klassekode'])){
-	$students->updateStudent ($_POST['klassekode'], $_POST ['klassenavn']);
+if (isset($_POST['endre'], $_POST['fornavn'], $_POST ['etternavn'], $_POST ['klassekode'], $_POST['brukernavn'])){
+    $students->updateClass ($_POST['brukernavn'], $_POST ['fornavn'], $_POST ['etternavn'], $_POST ['klassekode']);
+
 };
 ?>
 <!DOCTYPE html>
@@ -42,9 +44,9 @@ if (isset($_POST['endre'], $_POST['klassenavn'], $_POST['klassekode'])){
 
         <div>
             
-            <h2 class="text-blue">Endre tudenter</h2>
+            <h2 class="text-blue">Endre klasser</h2>
             
-            <form method="POST" action="endre-student.php">
+            
                 <div>
         <table>
                     <thead>
@@ -55,28 +57,34 @@ if (isset($_POST['endre'], $_POST['klassenavn'], $_POST['klassekode'])){
                             <th>Etternavn</th>
                             <th>Klassekode</th>
                         </tr>
-                    </thead>
+                    </thead> 
                     <tbody>
                         <?php
-                        foreach ($students->getStudents() as $key => $student) {
+                        foreach ($students->getStudents() as $key => $student)  {
+                            echo '<form method = "POST" action ="" >';
                             echo '<tr>'.PHP_EOL;
-                            echo '<td></td>'.PHP_EOL;
+                            echo '<td> <input type= "submit" name ="endre" value ="endre"> </td>'.PHP_EOL;
                             echo '<td>' . $student['brukernavn'] . '</td>'.PHP_EOL;
                             echo '<td><input type="text" name="fornavn" value="' . $student['fornavn'] . '"></td>'.PHP_EOL;
                             echo '<td><input type="text" name="etternavn" value="' . $student['etternavn'] . '"></td>'.PHP_EOL;
-                            echo '<td><input type="text" name="klassekode" value="' . $student['klassekode'] . '"></td>'.PHP_EOL;
-                            echo '<input type="hidden" name="hidden" value=" '. $student['brukernavn'] . '">'.PHP_EOL;
+                            //echo '<td><input type="text" name="klassekode" value="' . $class['klassekode'] . '"></td>'.PHP_EOL;
                             echo '</tr>'.PHP_EOL;
+                            echo '<input type="hidden" name="brukernavn" value="' . $student['brukernavn'] . '">'.PHP_EOL;
+                           
+                            //echo '<input type="text" name="klassekode" value="' . $class['klassekode'] . '">'.PHP_EOL;
+                            echo '</form>';
+
                         }
                         ?>
+
                     </tbody>
                 </table>
-                <input type="submit" name="update" value="update"
+                
                 
 </div>
     
                 
-            </form>
+          
         </div>
 
     </div>
