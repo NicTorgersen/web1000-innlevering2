@@ -8,11 +8,13 @@
 
 
 if (isset($_POST['update'], $_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden'])){
-$UpdateQuery = "UPDATE klasse SET klassekode='klassekode', Klassenavn='klassenavn' WHERE klassekode='hidden'";
-$db = new PDO('mysql:host=localhost;dbname=884604', $user, $pass);
-$stmt = $db->prepare($UpdateQuery); 
-var_dump($stmt->fetch(PDO::FETCH_ASSOC));
-$stmt->execute(array($_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden']));
+    $UpdateQuery = "UPDATE klasse SET klassekode='klassekode', Klassenavn='klassenavn' WHERE klassekode='hidden'";
+    $db = new PDO('mysql:host=localhost;dbname=884604', $user, $pass);
+    $stmt = $db->prepare($UpdateQuery);
+    $stmt->execute(array($_POST['klassekode'], $_POST['klassenavn'], $_POST['hidden']));
+
+    mysql_connect("username", "password");
+    mysql_query("update klasse set klassenavn = $klassenavn where klassekode = $klassekode")
 };
 ?>
 <!DOCTYPE html>
