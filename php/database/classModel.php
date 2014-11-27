@@ -11,6 +11,31 @@
             throw new Exception('Database connection required.');
         }
 
+        public function updateClass ($cc, $cn) {
+            $cc = $this->validateClassCode($cc);
+            $cn = $this->validateClassName($cn);
+            
+            if ($cc && $cn) {
+                $stmt = $this->db->prepare("UPDATE klasse SET klassenavn = ? WHERE klassekode = ?");
+                $stmt = $stmt->execute(array($cn, $cc));
+
+                $return = array(
+                    'cc' => $cc,
+                    'cn' => $cn
+                );
+
+                if ($stmt) {
+                    $return['success'] = true;
+                } else {
+                    $return['error'] = $stmt;
+                }
+
+                return $return;
+            } else {
+				return "error, cc and cn not valid";
+			}
+        }
+
         public function deleteClass (array $cc) {
             $cleanVals = $this->validateClassCodes($cc);
             $qMarks = $this->generateQMarks($cleanVals);
