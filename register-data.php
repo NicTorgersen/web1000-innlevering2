@@ -39,7 +39,7 @@ $classes = new ClassModel($db);
                     <legend>Registrer ny klasse</legend>
                     <div>
                         <label for="classcode">Klassekode</label>
-                        <input type="text" id="classcode" name="classcode" placeholder="IS1" pattern="{3,3}" minlength="3" maxlength="3" title="Kun 2 bokstaver og ett tall" required>
+                        <input type="text" id="classcode" name="classcode" placeholder="IS1" pattern="{3,3}" minlength="3" maxlength="40" title="Minst 3 bokstaver, og ett tall på slutten." required>
                     </div>
                     <div>
                         <label for="classname">Klassenavn</label>

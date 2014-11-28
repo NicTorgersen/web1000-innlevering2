@@ -46,7 +46,8 @@
             $stmt = $this->db->prepare("DELETE FROM klasse WHERE klassekode IN (" . $qMarks . ")");
             $stmt = $stmt->execute($cleanVals);
             $return = array(
-                'cc' => $cleanVals
+                'cc' => $cleanVals,
+                'qMarks' => $qMarks
             );
 
             if ($stmt) {

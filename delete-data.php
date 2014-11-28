@@ -9,6 +9,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script language="JavaScript" type="text/javascript">
+function checkDelete(){
+    return confirm('Are you sure?');
+}
+</script>
     <title>Slett data - Vedlikeholdsapplikasjon</title>
     <link href="css/main.css" rel="stylesheet">
     <meta charset="utf-8">
@@ -62,7 +67,7 @@
                 </table>
                 <input type="hidden" name="type" value="0">
                 <div>
-                    <input type="submit" name="submit" value="Slett klass(er)">
+                    <input type="submit" name="submit" value="Slett klass(er)" onclick="return checkDelete()"> 
                 </div>
             </form>
 
@@ -94,7 +99,8 @@
                 </table>
                 <input type="hidden" name="type" value="1">
                 <div>
-                    <input type="submit" name="submit" value="Slett student(er)">
+                    <input type="submit" name="submit" value="Slett student(er)" onclick="return checkDelete()">  
+                                                                                                     
                 </div>
             </form>
         </div>
