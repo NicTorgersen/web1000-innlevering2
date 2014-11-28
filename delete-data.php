@@ -99,8 +99,7 @@ function checkDelete(){
                 </table>
                 <input type="hidden" name="type" value="1">
                 <div>
-                    <input type="submit" name="submit" value="Slett student(er)" onclick="return checkDelete()">  
-                                                                                                     
+                    <input type="submit" name="submit" value="Slett student(er)" onclick="return checkDelete()">                                                                                
                 </div>
             </form>
         </div>
