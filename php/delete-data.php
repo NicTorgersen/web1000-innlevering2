@@ -9,8 +9,8 @@
                 $classes = new ClassModel($db);
                 $deleteClass = $_POST['deleteClass'];
                 if (count($deleteClass) != 0) {
-                    var_dump($classes->deleteClass($deleteClass));
-                    //header('Location: ../delete-data.php');
+                    $classes->deleteClass($deleteClass);
+                    header('Location: ../delete-data.php');
                 } else {
                     echo 'Vennligst velg noe som skal slettes.';
                     echo '<a href="../delete-data.php">Gå tilbake</a>';
