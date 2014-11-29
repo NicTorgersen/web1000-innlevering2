@@ -7,7 +7,7 @@
     $classes = new ClassModel($db);
 
 if (isset($_POST['endre'], $_POST['fornavn'], $_POST ['etternavn'], $_POST ['klassekode'], $_POST['brukernavn'])){
-    $students->updateStudent ($_POST['brukernavn'], $_POST ['fornavn'], $_POST ['etternavn'], $_POST ['klassekode']);
+    $students->updateStudent($_POST['brukernavn'], $_POST ['fornavn'], $_POST ['etternavn'], $_POST ['klassekode']);
 };
 ?>
 <!DOCTYPE html>
