@@ -72,9 +72,9 @@
 
                 if ($stmt) {
                     $return['success'] = true;
-                } else {
-                    $return['error'] = true;
-                }
+                } else if ($this->db->errorCode() == 1330) { $return['error'] = 'brukernavn allerede i bruk';
+                  echo'Brukernavnet er allerede i bruk';
+                  }
 
                 return $return;
             }
@@ -82,6 +82,7 @@
                 'error' => 0
             );
         }
+
 
         public function countClasses () {
             $stmt = $this->db->query('SELECT count(klassekode) as classes FROM klasse');

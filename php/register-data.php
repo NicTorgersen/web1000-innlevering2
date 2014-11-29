@@ -27,7 +27,8 @@
                         foreach($utils_ret as $key => $value) {
                             if ($key == 'success') {
                                 echo '<span class="success">' . $value . '</span>' . PHP_EOL;
-                            } else if ($key == 'error') {
+                      
+                             }else if ($key == 'error') {
                                 echo '<span class="error">' . $value . '</span>' . PHP_EOL;
                             }
                         }

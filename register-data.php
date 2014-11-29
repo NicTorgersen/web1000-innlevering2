@@ -45,7 +45,8 @@ $classes = new ClassModel($db);
                         <label for="classname">Klassenavn</label>
                         <input type="text" id="classname" name="classname" placeholder="Informasjonssystemer 1. år" pattern="{2,30}" minlength="2" maxlength="30" title="Mellom 2 og 30 bokstaver og tall" required>
                     </div>
-                    <div>
+                       <div>
+                        <input type="reset" value="Reset" />
                         <input type="submit" name="submit" value="Registrer">
                     </div>
                 </fieldset>
@@ -81,6 +82,7 @@ $classes = new ClassModel($db);
                         </select>
                     </div>
                     <div>
+                        <input type="reset" value="Reset" />
                         <input type="submit" name="submit" value="Registrer">
                     </div>
                 </fieldset>
