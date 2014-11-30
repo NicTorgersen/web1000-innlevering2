@@ -17,9 +17,7 @@
             
             if ($cc && $cn) {
                 $stmt = $this->db->prepare("UPDATE klasse SET klassenavn = ? WHERE klassekode = ?");
-
                 $stmt = $stmt->execute(array($cn, $cc));
-
 
                 $return = array(
                     'cc' => $cc,

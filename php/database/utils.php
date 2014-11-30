@@ -34,12 +34,12 @@
 
         protected function validateFirstName ($fn) {
             $fn = ucfirst(trim(strip_tags($fn)));
-            return (strlen($fn) < 20 && strlen($fn) >= 3) ? $fn : false;
+            return (strlen($fn) < 20 && strlen($fn) >= 2) ? $fn : false;
         }
 
         protected function validateLastName ($ln) {
             $ln = ucfirst(trim(strip_tags($ln)));
-            return (strlen($ln) < 20 && strlen($ln) >= 3) ? $ln : false;
+            return (strlen($ln) < 20 && strlen($ln) >= 2) ? $ln : false;
         }
 
         protected function validateUserName ($u) {
