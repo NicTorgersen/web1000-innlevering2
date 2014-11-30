@@ -28,8 +28,8 @@
                             if ($key == 'success') {
                                 echo '<span class="success">' . $value . '</span>' . PHP_EOL;
                       
-                             }else if ($key == 'error') {
-                                echo '<span class="error">' . $value . '</span>' . PHP_EOL;
+                             } else if ($key == 'error') {
+                                echo '<span class="error">' . $value . '</span>' . '<br>' . PHP_EOL;
                             }
                         }
                        echo '<a href="../register-data.php">Tilbake</a>';

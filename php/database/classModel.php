@@ -72,14 +72,13 @@
 
                 if ($stmt) {
                     $return['success'] = true;
-                } else if ($this->db->errorCode() == 1062) { $return['error'] = 'brukernavn allerede i bruk';
-                  echo'Brukernavnet er allerede i bruk';
-                  }
-
+                } else if ($this->db->errorCode() == 1062) {
+                    $return['error'] = 'Klassekode kan ikke defineres flere ganger.';
+                }
                 return $return;
             }
             return array(
-                'error' => 0
+                'error' => 'Ikke en lovlig klassekode, eller klassenavn'
             );
         }
 
