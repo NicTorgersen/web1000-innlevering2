@@ -71,7 +71,7 @@
                 );
 
                 if ($stmt) {
-                    $return['success'] = true;
+                    $return['success'] = 'Klassen, ' . $cn .  ', ble registrert!';
                 } else if ($stmtP->errorCode() == 23000) {
                     $return['error'] = 'Klassekode kan ikke defineres flere ganger.';
                 }

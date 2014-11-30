@@ -43,8 +43,8 @@
         public function deleteStudent (array $u) {
             $cleanVals = $this->validateUserNames($u);
             $qMarks = $this->generateQMarks($cleanVals);
-            $stmt = $this->db->prepare("DELETE FROM student WHERE brukernavn IN (" . $qMarks . ")");
-            $stmt = $stmt->execute($cleanVals);
+            $stmtP = $this->db->prepare("DELETE FROM student WHERE brukernavn IN (" . $qMarks . ")");
+            $stmt = $stmtP->execute($cleanVals);
             $return = array(
                 'u' => $cleanVals
             );
@@ -52,7 +52,7 @@
             if ($stmt) {
                 $return['success'] = true;
             } else {
-                $return['error'] = $stmt;
+                $return['error'] = $stmtP->errorCode();
             }
 
             return $return;
@@ -64,8 +64,8 @@
                 $fn = $this->validateFirstName($fn);
                 $ln = $this->validateLastName($ln);
                 $cc = $this->validateClassCode($cc);
-                $stmt = $this->db->prepare('INSERT INTO student (brukernavn, fornavn, etternavn, klassekode) VALUES (?, ?, ?, ?)');
-                $stmt = $stmt->execute(array($u, $fn, $ln, $cc));
+                $stmtP = $this->db->prepare('INSERT INTO student (brukernavn, fornavn, etternavn, klassekode) VALUES (?, ?, ?, ?)');
+                $stmt = $stmtP->execute(array($u, $fn, $ln, $cc));
                 $return = array(
                     'u' => $u,
                     'fn' => $fn,
@@ -74,18 +74,15 @@
                 );
 
                 if ($stmt) {
-                    $return['success'] = true;
-                } else {
-                    $return['error'] = true;
+                    $return['success'] = 'Studenten, ' . $fn . ' ' . $ln . ', ble registrert!';
+                } else if ($stmtP->errorCode() == 23000) {
+                    $return['error'] = 'Dette brukernavnet er allerede i bruk.';
                 }
 
                 return $return;
             }
             return array(
-                'u' => $u,
-                'fn' => $fn,
-                'ln' => $ln,
-                'error' => 0
+                'error' => 'Vennligst se over studentinformasjonen du puttet inn.'
             );
         }
 

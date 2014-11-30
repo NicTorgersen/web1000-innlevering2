@@ -28,7 +28,7 @@
                             if ($key == 'success') {
                                 echo '<span class="success">' . $value . '</span>' . PHP_EOL;
                              } else if ($key == 'error') {
-                                echo '<span class="error">' . $value . '</span>' . '<br>' . PHP_EOL;
+                                echo '<span class="error">' . $value . '</span><br>' . PHP_EOL;
                             }
                         }
                        echo '<a href="../register-data.php">Tilbake</a>';
@@ -40,18 +40,10 @@
                     if (isset($_POST['username'], $_POST['firstname'], $_POST['lastname'], $_POST['student_classcode'])) {
                         $utils_ret = $students->postStudent($_POST['username'], $_POST['firstname'], $_POST['lastname'], $_POST['student_classcode']);
                         foreach ($utils_ret as $key => $value) {
-                            if ($key == 'u') {
-                                echo 'Brukernavn: ' . $value . PHP_EOL;
-                            } else if ($key == 'fn') {
-                                echo 'Fornavn: ' . $value . PHP_EOL;
-                            } else if ($key == 'ln') {
-                                echo 'Etternavn: ' . $value . PHP_EOL;
-                            } else if ($key == 's_cc') {
-                                echo 'Klassekode: ' . $value . PHP_EOL;
-                            } else if ($key == 'success') {
+                            if ($key == 'success') {
                                 echo '<span class="success">' . $value . '</span>';
                             } else if ($key == 'error') {
-                                echo '<span class="error">' . $value . '</span>';
+                                echo '<span class="error">' . $value . '</span><br>';
                             }
                         } 
                         echo '<a href="../register-data.php">Tilbake</a>';
