@@ -35,8 +35,8 @@
                 return $return;
 
             } else {
-				return "error, cc and cn not valid";
-			}
+                return "error, cc and cn not valid";
+            }
 
         }
 
@@ -72,7 +72,7 @@
 
                 if ($stmt) {
                     $return['success'] = true;
-                } else if ($this->db->errorCode() == 1330) { $return['error'] = 'brukernavn allerede i bruk';
+                } else if ($this->db->errorCode() == 1062) { $return['error'] = 'brukernavn allerede i bruk';
                   echo'Brukernavnet er allerede i bruk';
                   }
 
@@ -99,5 +99,3 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }
-
-    
