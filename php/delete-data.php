@@ -9,8 +9,13 @@
                 $classes = new ClassModel($db);
                 $deleteClass = $_POST['deleteClass'];
                 if (count($deleteClass) != 0) {
-                    $classes->deleteClass($deleteClass);
-                    header('Location: ../delete-data.php');
+                    $res = $classes->deleteClass($deleteClass);
+                    if ($res['error'] == 23000) {
+                        echo 'Klassen har studenter, kan ikke slettes.<br>';
+                        echo '<a href="../delete-data.php">Tilbake</a>';
+                    } else {
+                        header('Location: ../delete-data.php');
+                    }
                 } else {
                     echo 'Vennligst velg noe som skal slettes.';
                     echo '<a href="../delete-data.php">Gå tilbake</a>';

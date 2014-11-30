@@ -63,7 +63,7 @@
 
         protected function validateClassCode ($cc) {
             $cc = strtoupper(trim(strip_tags($cc)));
-            return (strlen($cc) >= 3 && ctype_digit(substr($cc, -1)) && ctype_upper(substr($cc, 0, -1))) ? $cc : false;
+            return (strlen($cc) >= 3 && strlen($cc) <= 40 && ctype_digit(substr($cc, -1)) && ctype_upper(substr($cc, 0, -1))) ? $cc : false;
         }
 
         protected function validateClassCodes (array $cc) {

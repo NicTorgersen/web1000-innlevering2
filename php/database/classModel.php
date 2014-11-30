@@ -43,8 +43,8 @@
         public function deleteClass (array $cc) {
             $cleanVals = $this->validateClassCodes($cc);
             $qMarks = $this->generateQMarks($cleanVals);
-            $stmt = $this->db->prepare("DELETE FROM klasse WHERE klassekode IN (" . $qMarks . ")");
-            $stmt = $stmt->execute($cleanVals);
+            $stmtP = $this->db->prepare("DELETE FROM klasse WHERE klassekode IN (" . $qMarks . ")");
+            $stmt = $stmtP->execute($cleanVals);
             $return = array(
                 'cc' => $cleanVals,
                 'qMarks' => $qMarks
@@ -52,8 +52,8 @@
 
             if ($stmt) {
                 $return['success'] = true;
-            } else {
-                $return['error'] = $stmt;
+            } else  {
+                $return['error'] = $stmtP->errorCode();
             }
 
             return $return;
@@ -63,8 +63,8 @@
             if ($this->validateClassCode($cc) && $this->validateClassName($cn)) {
                 $cc = $this->validateClassCode($cc);
                 $cn = $this->validateClassName($cn);
-                $stmt = $this->db->prepare('INSERT INTO klasse (klassekode, klassenavn) VALUES (?, ?)');
-                $stmt = $stmt->execute(array($cc, $cn));
+                $stmtP = $this->db->prepare('INSERT INTO klasse (klassekode, klassenavn) VALUES (?, ?)');
+                $stmt = $stmtP->execute(array($cc, $cn));
                 $return = array(
                     'cc' => $cc,
                     'cn' => $cn
@@ -72,7 +72,7 @@
 
                 if ($stmt) {
                     $return['success'] = true;
-                } else if ($this->db->errorCode() == 1062) {
+                } else if ($stmtP->errorCode() == 23000) {
                     $return['error'] = 'Klassekode kan ikke defineres flere ganger.';
                 }
                 return $return;
